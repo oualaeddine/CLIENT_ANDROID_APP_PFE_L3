@@ -20,22 +20,18 @@
         android:theme="@style/AppTheme.NoActionBar"
         tools:ignore="GoogleAppIndexingWarning,RtlEnabled">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:label="@string/title_activity_main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name=".ui.auth.LoginActivity"
+            android:name=".ui.activities.auth.LoginActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
-        <activity android:name=".ui.auth.SignupActivity" />
-        <activity android:name=".ui.auth.ForgotPasswordActivity" />
+        <activity android:name=".ui.activities.auth.SignupActivity" />
+        <activity android:name=".ui.activities.auth.ForgotPasswordActivity" />
         <activity android:name=".ui.activities.LogementDetailsActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -52,6 +48,13 @@
         <activity
             android:name=".ui.fragments.map.MapsActivity"
             android:label="@string/title_activity_maps" />
+        <activity android:name=".ui.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

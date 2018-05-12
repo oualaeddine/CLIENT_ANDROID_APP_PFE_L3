@@ -1,7 +1,7 @@
-package berrehal_rahab_benghezal.pfe.l3app_client.ui.auth;
+package berrehal_rahab_benghezal.pfe.l3app_client.ui.activities.auth;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.R;
 
