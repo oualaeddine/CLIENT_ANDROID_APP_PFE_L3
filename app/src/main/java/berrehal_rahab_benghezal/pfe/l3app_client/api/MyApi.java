@@ -9,7 +9,7 @@ import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.NetworkManager;
 class MyApi {
     private static String ip = "192.168.1.5";
     protected static final String API_URL = "http://" + ip + ":8080/api/";
-    protected final NetworkManager networkManager;
+    private final NetworkManager networkManager;
 
     MyApi() {
         this.networkManager = new NetworkManager();

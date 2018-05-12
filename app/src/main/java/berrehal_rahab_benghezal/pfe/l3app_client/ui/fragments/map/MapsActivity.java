@@ -1,49 +1,24 @@
 package berrehal_rahab_benghezal.pfe.l3app_client.ui.fragments.map;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.FragmentActivity;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import berrehal_rahab_benghezal.pfe.l3app_client.R;
-
-/**
- * Created by berre on 5/11/2018.
- * Project : client_android_app.
- */
-public class MyMapFragment extends Fragment implements OnMapReadyCallback {
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    private MapView mapView;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
-    public static MyMapFragment newInstance() {
-        return new MyMapFragment();
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-
-        View rootView = inflater.inflate(R.layout.fragment_my_map, container, false);
-        mapView = rootView.findViewById(R.id.mapView);
-        mapView.getMapAsync(this);
-
-        return rootView;
-    }
 
     /**
      * Manipulates the map once available.
@@ -57,11 +32,10 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        Log.e("MapFrag", "mapReady");
+
         // Add a marker in Sydney and move the camera
         LatLng sydney = new LatLng(-34, 151);
-
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney").draggable(false));
+        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
     }
 }

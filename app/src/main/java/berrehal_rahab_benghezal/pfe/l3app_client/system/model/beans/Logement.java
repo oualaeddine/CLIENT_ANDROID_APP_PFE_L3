@@ -16,6 +16,7 @@ public class Logement implements Serializable {
     private boolean meubles;
     private Location location;
     private boolean isGele;
+    private String img;
 
     public boolean isGele() {
         return isGele;
@@ -183,5 +184,9 @@ public class Logement implements Serializable {
                 ", prix=" + prix +
                 ", gelé=" + isGele +
                 '}';
+    }
+
+    public String getImg() {
+        return img;
     }
 }

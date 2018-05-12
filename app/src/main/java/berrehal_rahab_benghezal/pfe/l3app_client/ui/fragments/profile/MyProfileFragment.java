@@ -1,4 +1,4 @@
-package berrehal_rahab_benghezal.pfe.l3app_client.ui.fragments;
+package berrehal_rahab_benghezal.pfe.l3app_client.ui.fragments.profile;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,18 +14,18 @@ import berrehal_rahab_benghezal.pfe.l3app_client.R;
  */
 public class MyProfileFragment extends Fragment {
 
-    public static MyProfileFragment newInstance() {
-        return new MyProfileFragment();
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    public static MyProfileFragment newInstance() {
+        return new MyProfileFragment();
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_mes_visites, container, false);
+        return inflater.inflate(R.layout.fragment_my_profile, container, false);
     }
 }

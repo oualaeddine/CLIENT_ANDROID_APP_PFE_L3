@@ -18,7 +18,29 @@ public class LogementsApi extends MyApi {
     }
 
     public LinkedList<Logement> getMyLogements() {
-        return null;
+        LinkedList<Logement> logements = new LinkedList<>();
+        // TODO: 5/12/2018 remplace dummy data with data from server
+
+        Logement logement = new Logement();
+
+        logement.setTitre("logement 1");
+        logement.setPrix(5000000);
+        logement.setDescription("logement description lorem ipsum hwayj hwayj");
+        logements.add(logement);
+        logement.setTitre("logement 2");
+        logement.setPrix(5000000);
+        logement.setDescription("logement description lorem ipsum hwayj hwayj");
+        logements.add(logement);
+        logement.setTitre("logement 3");
+        logement.setPrix(5000000);
+        logement.setDescription("logement description lorem ipsum hwayj hwayj");
+        logements.add(logement);
+        logement.setTitre("logement 4");
+        logement.setPrix(5000000);
+        logement.setDescription("logement description lorem ipsum hwayj hwayj");
+        logements.add(logement);
+
+        return logements;
     }
 
 
