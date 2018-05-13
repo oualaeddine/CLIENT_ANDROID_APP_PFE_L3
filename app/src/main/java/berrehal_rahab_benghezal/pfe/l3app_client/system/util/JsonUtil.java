@@ -6,9 +6,9 @@ import org.json.JSONObject;
 
 import java.util.LinkedList;
 
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.MyVisite;
 import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.Logement;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.MyNotification;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.my.MyNotification;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.my.MyVisite;
 
 /**
  * Created by berre on 5/13/2018.

@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import java.util.LinkedList;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.R;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.MyNotification;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.my.MyNotification;
 
 /**
  * Created by berre on 5/12/2018.

@@ -1,4 +1,4 @@
-package berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans;
+package berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.my;
 
 /**
  * Created by berre on 5/12/2018.

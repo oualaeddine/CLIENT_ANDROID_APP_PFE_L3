@@ -1,4 +1,4 @@
-package berrehal_rahab_benghezal.pfe.l3app_client.system.model;
+package berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.my;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.system.model.enums.EtatVisite;
 

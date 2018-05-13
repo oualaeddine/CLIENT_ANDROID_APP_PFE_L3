@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.MyApp;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
 import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.SharedPreferencesManager;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.util.VolleyCallback;
 
 /**
  * Created by berre on 5/8/2018.

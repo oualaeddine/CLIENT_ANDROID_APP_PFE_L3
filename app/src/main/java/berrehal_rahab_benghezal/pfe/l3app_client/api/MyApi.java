@@ -11,11 +11,11 @@ import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.NetworkManager;
 class MyApi {
 
     private static final String
-            ip = "192.168.1.5",
+            ip = "127.0.0.1",
             API_URL = "http://" + ip + ":8080/api";
 
     static final String
-            AUTH_API_URL = "/authApi",
+            AUTH_API_URL = API_URL + "/authApi",
             GET_MY_LOGEMENTS_URL = API_URL + "/logementApi",
             GET_MY_VISITES_URL = API_URL + "/visiteApi",
             GET_MY_NOTIFICATIONS_URL = API_URL + "/notificationsApi";

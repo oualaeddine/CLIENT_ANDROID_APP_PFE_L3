@@ -15,8 +15,8 @@ import java.util.LinkedList;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.R;
 import berrehal_rahab_benghezal.pfe.l3app_client.api.VisitesApi;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
 import berrehal_rahab_benghezal.pfe.l3app_client.system.util.JsonUtil;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.util.VolleyCallback;
 import berrehal_rahab_benghezal.pfe.l3app_client.ui.fragments.Myfragment;
 
 

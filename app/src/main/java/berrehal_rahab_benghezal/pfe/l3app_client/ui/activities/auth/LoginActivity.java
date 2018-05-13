@@ -23,10 +23,10 @@ import java.util.regex.Pattern;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.R;
 import berrehal_rahab_benghezal.pfe.l3app_client.api.AuthApi;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.ActivitiesManager;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
 import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.SharedPreferencesManager;
 import berrehal_rahab_benghezal.pfe.l3app_client.system.model.util.MyCredentials;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.util.ActivitiesManager;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.util.VolleyCallback;
 
 
 public class LoginActivity extends AppCompatActivity {
