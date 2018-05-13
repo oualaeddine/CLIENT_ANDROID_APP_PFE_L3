@@ -1,46 +1,80 @@
 package berrehal_rahab_benghezal.pfe.l3app_client.api;
 
-import java.util.LinkedList;
+import android.content.Context;
+import android.util.Log;
+import android.widget.Toast;
 
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.Logement;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import berrehal_rahab_benghezal.pfe.l3app_client.MyApp;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.SharedPreferencesManager;
 
 /**
  * Created by berre on 5/8/2018.
  * Project : client_android_app.
  */
 public class LogementsApi extends MyApi {
-    public LogementsApi() {
-        super();
+
+    public LogementsApi(Context context) {
+        super(context);
     }
 
-    public Logement getLogementById(int logementId) {
-        return null;
+    public void getLogementById(final VolleyCallback callback, int logementId) {
+        Request req = new StringRequest(Request.Method.POST, GET_MY_LOGEMENTS_URL,
+                response -> {
+                    Log.e("getLogementById", response);
+                    callback.onSuccess(response);
+                }, error -> {
+            Log.e("getLogementById", "error");
+            callback.onFailed(error.toString());
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                SharedPreferencesManager preferencesManager = new SharedPreferencesManager(context);
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userId", preferencesManager.getUserId() + "");
+                params.put("password", preferencesManager.getPassword());
+                params.put("logementId", "" + logementId);
+                params.put("action", "getLogementById");
+                params.put("type", "client");
+                return params;
+            }
+        };
+        if (canConnect())
+            MyApp.getApp().addToRequestQueue(req);
+        else
+            Toast.makeText(context, "probleme internet", Toast.LENGTH_SHORT).show();
     }
 
-    public LinkedList<Logement> getMyLogements() {
-        LinkedList<Logement> logements = new LinkedList<>();
-        // TODO: 5/12/2018 remplace dummy data with data from server
-
-        Logement logement = new Logement();
-
-        logement.setTitre("logement 1");
-        logement.setPrix(5000000);
-        logement.setDescription("logement description lorem ipsum hwayj hwayj");
-        logements.add(logement);
-        logement.setTitre("logement 2");
-        logement.setPrix(5000000);
-        logement.setDescription("logement description lorem ipsum hwayj hwayj");
-        logements.add(logement);
-        logement.setTitre("logement 3");
-        logement.setPrix(5000000);
-        logement.setDescription("logement description lorem ipsum hwayj hwayj");
-        logements.add(logement);
-        logement.setTitre("logement 4");
-        logement.setPrix(5000000);
-        logement.setDescription("logement description lorem ipsum hwayj hwayj");
-        logements.add(logement);
-
-        return logements;
+    public void getMyLogements(final VolleyCallback callback) {
+        Request req = new StringRequest(Request.Method.POST, GET_MY_LOGEMENTS_URL,
+                response -> {
+                    Log.e("getMyLogements", response);
+                    callback.onSuccess(response);
+                }, error -> {
+            Log.e("getMyLogements", "error");
+            callback.onFailed(error.toString());
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                SharedPreferencesManager preferencesManager = new SharedPreferencesManager(context);
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userId", preferencesManager.getUserId() + "");
+                params.put("password", preferencesManager.getPassword());
+                params.put("action", "getMyLogements");
+                params.put("type", "client");
+                return params;
+            }
+        };
+        if (canConnect())
+            MyApp.getApp().addToRequestQueue(req);
+        else
+            Toast.makeText(context, "probleme internet", Toast.LENGTH_SHORT).show();
     }
 
 

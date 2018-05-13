@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (new SharedPreferencesManager(this).isLoggedIn())
+            new ActivitiesManager(this).startMain();
+
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_login);
 
@@ -106,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
         MyCredentials myCreds = new MyCredentials();
         myCreds.setPassword(password);
         myCreds.setUsername(email);
-        new AuthApi().login(
+        new AuthApi(LoginActivity.this).login(
                 new VolleyCallback() {
                     @Override
                     public void onSuccess(String result) {
@@ -118,11 +122,11 @@ public class LoginActivity extends AppCompatActivity {
                                 preferencesManager.setPassword(obj.getString("password"));
 
                                 new ActivitiesManager(LoginActivity.this).startMain();
-                            }
+                            } else
+                                Toast.makeText(LoginActivity.this, "auth error", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
 
                     @Override

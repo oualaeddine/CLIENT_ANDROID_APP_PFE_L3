@@ -6,6 +6,7 @@ package berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans;
  */
 public class MyNotification {
     private String title, img;
+    private int id;
 
     public String getTitle() {
         return title;
@@ -21,5 +22,13 @@ public class MyNotification {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

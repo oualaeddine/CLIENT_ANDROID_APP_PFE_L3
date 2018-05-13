@@ -1,8 +1,17 @@
 package berrehal_rahab_benghezal.pfe.l3app_client.api;
 
-import java.util.LinkedList;
+import android.content.Context;
+import android.util.Log;
 
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.MyNotification;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import berrehal_rahab_benghezal.pfe.l3app_client.MyApp;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.SharedPreferencesManager;
 
 /**
  * Created by berre on 5/8/2018.
@@ -10,25 +19,33 @@ import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.MyNotificati
  */
 public class NotificationsApi extends MyApi {
 
-    public LinkedList<MyNotification> getMyNotificationss() {
-        LinkedList<MyNotification> notifications = new LinkedList<>();
-        // TODO: 5/12/2018 remplace dummy data with data from server
 
-        MyNotification notification = new MyNotification();
+    public NotificationsApi(Context context) {
+        super(context);
+    }
 
-        notification.setTitle("notification 1");
-        notification.setImg("");
-        notifications.add(notification);
+    public void getMyNotificationss(VolleyCallback callback) {
+        Request req = new StringRequest(Request.Method.POST, GET_MY_NOTIFICATIONS_URL,
+                response -> {
+                    Log.e("getMyNotificationss", response);
+                    callback.onSuccess(response);
+                }, error -> {
+            Log.e("getMyNotificationss", "error");
+            callback.onFailed(error.toString());
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                SharedPreferencesManager preferencesManager = new SharedPreferencesManager(context);
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userId", preferencesManager.getUserId() + "");
+                params.put("password", preferencesManager.getPassword());
+                params.put("action", "getMyNotifications");
+                params.put("type", "client");
+                return params;
+            }
+        };
+        MyApp.getApp().addToRequestQueue(req);
 
-        notification.setTitle("notification 2");
-        notification.setImg("");
-        notifications.add(notification);
-
-        notification.setTitle("notification 3");
-        notification.setImg("");
-        notifications.add(notification);
-
-        return notifications;
     }
 
 

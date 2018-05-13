@@ -1,8 +1,17 @@
 package berrehal_rahab_benghezal.pfe.l3app_client.api;
 
-import java.util.LinkedList;
+import android.content.Context;
+import android.util.Log;
 
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.MyVisite;
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import berrehal_rahab_benghezal.pfe.l3app_client.MyApp;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.managers.SharedPreferencesManager;
 
 /**
  * Created by berre on 5/8/2018.
@@ -10,48 +19,33 @@ import berrehal_rahab_benghezal.pfe.l3app_client.system.model.MyVisite;
  */
 public class VisitesApi extends MyApi {
 
-    public LinkedList<MyVisite> getMyVisites() {
-        LinkedList<MyVisite> visites = new LinkedList<>();
-// TODO: 5/12/2018 remplace dummy data with data from server
 
-        MyVisite myVisite = new MyVisite();
-        myVisite.setId(9562);
-        myVisite.setIdLogement(2566);
-        myVisite.setIdAgent(256526);
-        myVisite.setAgentFullName("Taher boulhwayj");
-        myVisite.setDate("15/05/2018");
-        myVisite.setTime("de 8:00 à 10:00");
+    public VisitesApi(Context context) {
+        super(context);
+    }
 
-        visites.add(myVisite);
+    public void getMyVisites(VolleyCallback callback) {
+        Request req = new StringRequest(Request.Method.POST, GET_MY_VISITES_URL,
+                response -> {
+                    Log.e("getMyVisites", response);
+                    callback.onSuccess(response);
+                }, error -> {
+            Log.e("getMyVisites", "error");
+            callback.onFailed(error.toString());
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                SharedPreferencesManager preferencesManager = new SharedPreferencesManager(context);
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("userId", preferencesManager.getUserId() + "");
+                params.put("password", preferencesManager.getPassword());
+                params.put("action", "getMyVisites");
+                params.put("type", "client");
+                return params;
+            }
+        };
+        MyApp.getApp().addToRequestQueue(req);
 
-
-        myVisite.setId(956852852);
-        myVisite.setIdLogement(2566);
-        myVisite.setIdAgent(256526);
-        myVisite.setAgentFullName("Taher bouldjaj");
-        myVisite.setDate("15/05/2018");
-        myVisite.setTime("de 10:00 à 12:00");
-
-        visites.add(myVisite);
-
-        myVisite.setId(95622222);
-        myVisite.setIdLogement(2566);
-        myVisite.setIdAgent(256526);
-        myVisite.setAgentFullName("Taher boul3dam");
-        myVisite.setDate("15/05/2018");
-        myVisite.setTime("de 14:00 à 16:00");
-        visites.add(myVisite);
-
-        myVisite.setId(95622222);
-        myVisite.setIdLogement(2566);
-        myVisite.setIdAgent(256526);
-        myVisite.setAgentFullName("Taher boucheham");
-        myVisite.setDate("16/05/2018");
-        myVisite.setTime("de 14:00 à 16:00");
-
-        visites.add(myVisite);
-
-        return visites;
     }
 
 

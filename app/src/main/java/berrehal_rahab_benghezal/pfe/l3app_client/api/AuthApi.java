@@ -1,5 +1,6 @@
 package berrehal_rahab_benghezal.pfe.l3app_client.api;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.android.volley.Request;
@@ -18,14 +19,15 @@ import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.humans.Clien
  */
 public class AuthApi extends MyApi {
 
-
-    private String checkUserUrl = "";
+    public AuthApi(Context context) {
+        super(context);
+    }
 
     public void login(final VolleyCallback callback, String email, String password) {
 
-        Request req = new StringRequest(Request.Method.POST, checkUserUrl,
+        Request req = new StringRequest(Request.Method.POST, AUTH_API_URL,
                 response -> {
-                    Log.e("check Profile", response);
+                    Log.e("login", response);
                     callback.onSuccess(response);
                 }, error -> {
             Log.e("", "error");
@@ -37,6 +39,9 @@ public class AuthApi extends MyApi {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("email", email);
                 params.put("password", password);
+
+                params.put("action", "login");
+                params.put("type", "client");
                 return params;
             }
         };

@@ -10,14 +10,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import java.util.LinkedList;
 
 import berrehal_rahab_benghezal.pfe.l3app_client.R;
 import berrehal_rahab_benghezal.pfe.l3app_client.api.LogementsApi;
-import berrehal_rahab_benghezal.pfe.l3app_client.system.model.beans.Logement;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.VolleyCallback;
+import berrehal_rahab_benghezal.pfe.l3app_client.system.util.JsonUtil;
+import berrehal_rahab_benghezal.pfe.l3app_client.ui.fragments.Myfragment;
 
 
-public class MesLogementsFragment extends Fragment {
+public class MesLogementsFragment extends Fragment implements Myfragment {
+    private View rootView;
+
     public static MesLogementsFragment newInstance() {
         Log.e("MesLogementsFragment", "newInstance");
 
@@ -36,18 +43,43 @@ public class MesLogementsFragment extends Fragment {
                              Bundle savedInstanceState) {
         Log.e("MesLogementsFragment", "onCreateView");
 
-        View rootView = inflater.inflate(R.layout.fragment_mes_logements, container, false);
+        rootView = inflater.inflate(R.layout.fragment_mes_logements, container, false);
+        initData();
+        return rootView;
+    }
+
+    @Override
+    public void initData() {
         //get data from server
-        LinkedList<Logement> notifications = new LogementsApi().getMyLogements();
+        new LogementsApi(getContext()).getMyLogements(new VolleyCallback() {
+            @Override
+            public void onSuccess(String result) {
+                try {
+                    JSONArray jsonLogements = new JSONArray(result);
+                    initRecycler(JsonUtil.jsonToLogementsList(jsonLogements));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailed(String result) {
+
+            }
+        });
+    }
+
+    @Override
+    public void initRecycler(LinkedList logements) {
         //init adapter with data
         LogementsAdapter logementsAdapter = new LogementsAdapter(getContext());
-        logementsAdapter.setData(notifications);
+        logementsAdapter.setData(logements);
         //init racycler view
         RecyclerView recyclerView = rootView.findViewById(R.id.rv_logements);
         //setup recycler view
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(logementsAdapter);
-
-        return rootView;
     }
+
+
 }

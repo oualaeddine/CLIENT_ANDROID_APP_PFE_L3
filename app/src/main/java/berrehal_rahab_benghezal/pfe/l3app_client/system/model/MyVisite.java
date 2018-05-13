@@ -1,5 +1,7 @@
 package berrehal_rahab_benghezal.pfe.l3app_client.system.model;
 
+import berrehal_rahab_benghezal.pfe.l3app_client.system.model.enums.EtatVisite;
+
 /**
  * Created by berre on 5/12/2018.
  * Project : client_android_app.
@@ -8,6 +10,7 @@ public class MyVisite {
 
     private int id, idAgent, idLogement;
     private String date, time, agentFullName;
+    private EtatVisite state;
 
     public MyVisite() {
     }
@@ -58,5 +61,9 @@ public class MyVisite {
 
     public void setAgentFullName(String agentFullName) {
         this.agentFullName = agentFullName;
+    }
+
+    public void setState(EtatVisite state) {
+        this.state = state;
     }
 }

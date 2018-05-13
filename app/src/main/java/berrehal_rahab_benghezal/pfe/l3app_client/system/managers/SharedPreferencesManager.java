@@ -13,6 +13,7 @@ public class SharedPreferencesManager {
             IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch",
             USER_ID = "api_url",
             USER_PASS = "app_id";
+    private static final String IS_LOGGED_IN = "is_logged";
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -56,4 +57,7 @@ public class SharedPreferencesManager {
         editor.commit();
     }
 
+    public boolean isLoggedIn() {
+        return pref.getBoolean(IS_LOGGED_IN, false);
+    }
 }
